@@ -1,0 +1,29 @@
+
+node_types:
+
+  ###########################################################
+  # We define a type that inherits vcloud's default
+  # server, and adds monitoring capabillities on top of it.
+  ###########################################################
+
+  nodecellar.nodes.MonitoredServer:
+    derived_from: cloudify.vsphere.nodes.Server
+    properties:
+      cloudify_agent:
+          default:
+            user: { get_input: agent_user }
+      server:
+        default:
+          template: { get_input: template_name }
+          cpus: 1
+          memory: 2048
+      networking:
+        default:
+          connect_networks:
+            - name: { get_input: management_network }
+              switch_distributed: True
+              management: True
+            - name: { get_input: external_network }
+              switch_distributed: True
+              external: True
+

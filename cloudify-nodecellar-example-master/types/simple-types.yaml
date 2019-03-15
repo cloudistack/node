@@ -1,0 +1,5 @@
+
+node_types:
+
+  nodecellar.nodes.MonitoredServer:
+    derived_from: cloudify.nodes.Compute

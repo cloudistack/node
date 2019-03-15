@@ -1,0 +1,17 @@
+node_types:
+
+  ###########################################################
+  # We define a type that inherits ec2's default
+  # server, and adds monitoring capabillities on top of it.
+  ###########################################################
+
+  nodecellar.nodes.MonitoredServer:
+    derived_from: cloudify.aws.nodes.Instance
+    properties:
+      cloudify_agent:
+        default:
+          user: { get_input: agent_user }
+      image_id:
+        default: { get_input: image }
+      instance_type:
+        default: { get_input: size }

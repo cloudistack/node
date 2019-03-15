@@ -1,0 +1,24 @@
+
+node_types:
+
+  ###########################################################
+  # We define a type that inherits softlayer's default
+  # server, and adds monitoring capabillities on top of it.
+  ###########################################################
+
+  nodecellar.nodes.MonitoredServer:
+    derived_from: cloudify.softlayer.nodes.VirtualServer
+    properties:
+      location: 
+        default: { get_input: location }
+      domain: 
+        default: { get_input: domain }
+      ram:
+        default: { get_input: ram }
+      cpu: 
+        default: { get_input: cpu }
+      disk: 
+        default: { get_input: disk }
+      os: 
+        default: { get_input: os }
+
